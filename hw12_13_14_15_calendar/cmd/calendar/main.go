@@ -5,10 +5,10 @@ import (
 	"os"
 	"os/signal"
 
-	"github.com/fixme_my_friend/hw12_13_14_15_calendar/internal/app"
-	"github.com/fixme_my_friend/hw12_13_14_15_calendar/internal/logger"
-	internalhttp "github.com/fixme_my_friend/hw12_13_14_15_calendar/internal/server/http"
-	memorystorage "github.com/fixme_my_friend/hw12_13_14_15_calendar/internal/storage/memory"
+	"github.com/kirgizz/hw12_13_14_15_calendar/internal/app"
+	"github.com/kirgizz/hw12_13_14_15_calendar/internal/logger"
+	internalhttp "github.com/kirgizz/hw12_13_14_15_calendar/internal/server/http"
+	memorystorage "github.com/kirgizz/hw12_13_14_15_calendar/internal/storage/memory"
 )
 
 var configFile string
