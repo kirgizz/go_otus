@@ -1,4 +1,4 @@
-module github.com/kirgizz/hw06_pipeline_execution
+module github.com/kirgizz/go_otus/hw06_pipeline_execution
 
 go 1.15
 

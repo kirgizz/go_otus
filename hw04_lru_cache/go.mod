@@ -1,4 +1,4 @@
-module github.com/kirgizz/hw04_lru_cache
+module github.com/kirgizz/go_otus/hw04_lru_cache
 
 go 1.15
 

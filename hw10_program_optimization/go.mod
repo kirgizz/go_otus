@@ -1,4 +1,4 @@
-module github.com/kirgizz/hw10_program_optimization
+module github.com/kirgizz/go_otus/hw10_program_optimization
 
 go 1.15
 

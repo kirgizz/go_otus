@@ -1,4 +1,4 @@
-module github.com/kirgizz/hw03_frequency_analysis
+module github.com/kirgizz/go_otus/hw03_frequency_analysis
 
 go 1.15
 

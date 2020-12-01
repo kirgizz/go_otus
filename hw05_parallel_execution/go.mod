@@ -1,4 +1,4 @@
-module github.com/kirgizz/hw05_parallel_execution
+module github.com/kirgizz/go_otus/hw05_parallel_execution
 
 go 1.15
 

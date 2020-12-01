@@ -1,4 +1,4 @@
-module github.com/kirgizz/hw11_telnet_client
+module github.com/kirgizz/go_otus/hw11_telnet_client
 
 go 1.15
 
