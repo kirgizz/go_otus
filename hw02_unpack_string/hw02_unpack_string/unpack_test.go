@@ -32,6 +32,7 @@ func TestUnpack(t *testing.T) {
 			expected: "",
 			err:      ErrInvalidString,
 		},
+		//Two problem tests
 		{
 			input:    "aaa10b",
 			expected: "",
