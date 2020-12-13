@@ -27,13 +27,13 @@ func Unpack(checkString string) (string, error) {
 			}
 			repeatNumber, err := strconv.Atoi(string(r))
 
-			if err != nil || repeatNumber < 0{
+			if err != nil || repeatNumber < 0 {
 				return "", ErrInvalidString
 			}
 			symbol := string((checkString[i-1]))
 			if symbol == systemSymbol {
 				if string(checkString[i-2]) == "\\" {
-					builder.WriteString(strings.Repeat("\\" + systemSymbol, repeatNumber))
+					builder.WriteString(strings.Repeat("\\"+systemSymbol, repeatNumber))
 					continue
 				}
 			}
@@ -43,7 +43,7 @@ func Unpack(checkString string) (string, error) {
 			continue
 		}
 		//trim character before zero
-		if len(checkString) >= i + 2 && (string(checkString[i+1]) == "0") {
+		if len(checkString) >= i+2 && (string(checkString[i+1]) == "0") {
 			continue
 		}
 		//by default add character
