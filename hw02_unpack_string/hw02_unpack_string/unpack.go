@@ -9,6 +9,7 @@ import (
 
 var ErrInvalidString = errors.New("invalid string")
 var systemSymbol = "n"
+var slashSymbol = "\\"
 
 func Unpack(checkString string) (string, error) {
 	if len(checkString) == 0 {
@@ -20,33 +21,28 @@ func Unpack(checkString string) (string, error) {
 	}
 	builder := strings.Builder{}
 	for i, r := range checkString {
-		if unicode.IsDigit(r) {
-			//double int characters - error
-			if len(checkString) >= i+1 && unicode.IsDigit(rune(checkString[i+1])) {
-				return "", ErrInvalidString
+		// double int characters - error
+		if len(checkString) >= i+2 && unicode.IsDigit(rune(checkString[i+1])) && unicode.IsDigit(r) {
+			return "", ErrInvalidString
+		}
+		// unpack string
+		if repeatNumber, err := strconv.Atoi(string(checkString[i])); err == nil {
+			symbol := string(checkString[i-1])
+			if symbol == systemSymbol && string(checkString[i-2]) == slashSymbol {
+				builder.WriteString(strings.Repeat(slashSymbol+symbol, repeatNumber))
+				continue
 			}
-			repeatNumber, err := strconv.Atoi(string(r))
-
-			if err != nil || repeatNumber < 0 {
-				return "", ErrInvalidString
+			if repeatNumber == 0 {
+				continue
 			}
-			symbol := string((checkString[i-1]))
-			if symbol == systemSymbol {
-				if string(checkString[i-2]) == "\\" {
-					builder.WriteString(strings.Repeat("\\"+systemSymbol, repeatNumber))
-					continue
-				}
-			}
-			for j := 0; j < repeatNumber-1; j++ {
-				builder.WriteString(symbol)
-			}
+			builder.WriteString(strings.Repeat(symbol, repeatNumber-1))
 			continue
 		}
-		//trim character before zero
+		// trim character before zero
 		if len(checkString) >= i+2 && (string(checkString[i+1]) == "0") {
 			continue
 		}
-		//by default add character
+		// by default add character
 		builder.WriteRune(r)
 	}
 	return builder.String(), nil
