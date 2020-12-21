@@ -32,6 +32,7 @@ func TestUnpack(t *testing.T) {
 			expected: "",
 			err:      ErrInvalidString,
 		},
+		//Two problem tests
 		{
 			input:    "aaa10b",
 			expected: "",
@@ -44,6 +45,10 @@ func TestUnpack(t *testing.T) {
 		{
 			input:    "aaa0b",
 			expected: "aab",
+		},
+		{
+			input:    "абв4дац",
+			expected: "абввввдац",
 		},
 	} {
 		result, err := Unpack(tst.input)
