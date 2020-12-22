@@ -10,8 +10,9 @@ func Top10(rawText string) []string {
 	if len(rawText) == 0 {
 		return nil
 	}
-	//split text by space symbol
-	r := regexp.MustCompile("\\n|\\s|\\t|\\z")
+
+	// split text by space symbol
+	r := regexp.MustCompile(`\n|\s|\t|\z`)
 	textSlice := r.Split(rawText, -1)
 	entryes := map[string]int{}
 	for _, word := range textSlice {
@@ -21,7 +22,7 @@ func Top10(rawText string) []string {
 		entryes[word]++
 	}
 
-	//create list with words and sort it by entryes count
+	// create list with words and sort it by entryes count
 	sortedWords := make([]string, 0)
 	for entry := range entryes {
 		sortedWords = append(sortedWords, entry)
