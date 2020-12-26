@@ -1,7 +1,7 @@
 package hw03_frequency_analysis //nolint:golint,stylecheck
 import (
-	"regexp"
 	"sort"
+	"strings"
 )
 
 var topWordsCount = 10
@@ -12,13 +12,9 @@ func Top10(rawText string) []string {
 	}
 
 	// split text by space symbol
-	r := regexp.MustCompile(`\n|\s|\t|\z`)
-	textSlice := r.Split(rawText, -1)
-	entryes := map[string]int{}
+	textSlice := strings.Fields(rawText)
+	entryes := make(map[string]int)
 	for _, word := range textSlice {
-		if word == "" {
-			continue
-		}
 		entryes[word]++
 	}
 
@@ -30,5 +26,8 @@ func Top10(rawText string) []string {
 	sort.Slice(sortedWords, func(i, j int) bool {
 		return entryes[sortedWords[i]] > entryes[sortedWords[j]]
 	})
+	if len(sortedWords) <= topWordsCount {
+		return nil
+	}
 	return sortedWords[:topWordsCount]
 }
