@@ -27,7 +27,7 @@ func Top10(rawText string) []string {
 		return entryes[sortedWords[i]] > entryes[sortedWords[j]]
 	})
 	if len(sortedWords) <= topWordsCount {
-		return nil
+		return sortedWords
 	}
 	return sortedWords[:topWordsCount]
 }
