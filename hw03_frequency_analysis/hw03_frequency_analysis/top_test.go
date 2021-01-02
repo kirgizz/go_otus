@@ -57,4 +57,8 @@ func TestTop10(t *testing.T) {
 			require.ElementsMatch(t, expected, Top10(text))
 		}
 	})
+
+	t.Run("words count less than expected", func(t *testing.T) {
+		require.Len(t, Top10(text), topWordsCount)
+	})
 }
