@@ -1,4 +1,5 @@
 package hw04_lru_cache //nolint:golint,stylecheck
+import "fmt"
 
 type Key string
 
@@ -22,11 +23,14 @@ func (l *lruCache) Set(key Key, value interface{}) bool {
 	keyExists := false
 	var item listItem
 
-	// remove last item if queue full
 	if l.Queue.Len() >= l.Capacity {
 		itemToRemove := l.Queue.Back()
 		key := l.FindItemByValue(*itemToRemove)
+
+		fmt.Println("delete key: ", itemToRemove.Value)
+		fmt.Println("Before delete ", l.Cache)
 		delete(l.Cache, key)
+		fmt.Println("After delete ", l.Cache)
 		l.Queue.Remove(l.Queue.Back())
 	}
 
@@ -42,6 +46,16 @@ func (l *lruCache) Set(key Key, value interface{}) bool {
 		l.Cache[key] = item
 	}
 
+	/*
+	fmt.Printf("Queue len %d\n", l.Queue.Len())
+	//fmt.Println("Front elem ", l.Queue.Front())
+	//fmt.Println("Back elem ", l.Queue.Back())
+	fmt.Println("#########")
+	for i := l.Queue.Front(); i != nil; i = i.Next {
+		fmt.Println(i.Value)
+	}
+
+	 */
 	return keyExists
 }
 

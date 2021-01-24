@@ -6,10 +6,6 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-type Listt interface {
-	Len() int
-}
-
 func TestList(t *testing.T) {
 	t.Run("empty list", func(t *testing.T) {
 		l := NewList()
@@ -17,16 +13,6 @@ func TestList(t *testing.T) {
 		require.Equal(t, 0, l.Len())
 		require.Nil(t, l.Front())
 		require.Nil(t, l.Back())
-	})
-
-	t.Run("remove not-existing", func(t *testing.T) {
-		l := NewList()
-		item := &listItem{
-			Value: nil,
-			Next:  nil,
-		}
-		l.Remove(item)
-		require.Equal(t, 0, l.Len())
 	})
 
 	t.Run("complex", func(t *testing.T) {
