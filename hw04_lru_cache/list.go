@@ -77,14 +77,12 @@ func (l *list) Remove(i *listItem) {
 	prev := i.Prev
 	next := i.Next
 
-	// update link in next element to previous
 	if next != nil {
 		next.Prev = prev
 	} else {
 		l.back = prev
 	}
 
-	// update link in previous element to next
 	if prev != nil {
 		prev.Next = next
 	} else {

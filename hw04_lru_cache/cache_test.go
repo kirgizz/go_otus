@@ -58,25 +58,20 @@ func TestCache(t *testing.T) {
 		require.Equal(t, nil, val)
 	})
 
-	t.Run("increase capacity", func(t *testing.T) {
+	t.Run("high capacity", func(t *testing.T) {
 		c := NewCache(3)
 		c.Set("aaa", 100)
 		c.Set("bbb", 101)
 		c.Set("ccc", 102)
 		c.Set("ddd", 103)
-		c.Set("eee", 104)
-
-		/*
 		val, ok := c.Get("aaa")
-		fmt.Println(val, ok)
-		val, ok = c.Get("bbb")
-		fmt.Println(val, ok)
-		val, ok = c.Get("ccc")
-		fmt.Println(val, ok)
-		val, ok = c.Get("ddd")
-		fmt.Println(val, ok)
-*/
-		require.False(t, false)
+		val1, ok1 := c.Get("ddd")
+
+		require.True(t, ok1)
+		require.Equal(t, 103, val1)
+
+		require.False(t, ok)
+		require.Equal(t, nil, val)
 	})
 
 }
